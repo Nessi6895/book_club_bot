@@ -1,8 +1,7 @@
 name: Deploy Action
 run-name: ${{ github.actor }} is deploying new version of the bot 🚀
 on:
-  push:
-    main
+  [push]
 jobs:
   build-image-and-deploy:
     runs-on: ubuntu-latest
