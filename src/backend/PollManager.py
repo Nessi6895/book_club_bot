@@ -25,8 +25,12 @@ class PollManager:
         requests.post(self.host + "/polls/vote", data=json.dumps(payload))
 
     def not_reading(self, poll_id, voter) -> None:
-        # todo send to backend
-        pass
+        payload = {
+            'pollId': poll_id,
+            'voter': voter
+        }
+        requests.post(self.host + "/polls/skip", data=json.dumps(payload))
+        
 
     def save_poll(self, poll_id, type: PollType, options: "list[str]") -> Poll:
         payload = {
@@ -38,5 +42,5 @@ class PollManager:
         return createPoll(poll_id, type, options)
 
     def close_poll(self, poll_id: str) -> None:
-        # todo need to actualy go to backend
-        pass
+        requests.delete(self.host + "/polls/"+ poll_id)
+        
