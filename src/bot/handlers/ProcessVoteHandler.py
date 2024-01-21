@@ -14,7 +14,6 @@ class ProcessVoteHandler(CallbackQueryHandler):
     async def __vote_for_book(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         query = update.callback_query
         await query.answer()
-        print(query.message.id)
         poll: Poll = self.poll_manager.get_poll(str(query.message.id))
         voter = update.callback_query.from_user.username
         if query.data == '-1': 
