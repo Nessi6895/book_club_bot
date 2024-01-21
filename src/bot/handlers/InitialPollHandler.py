@@ -76,7 +76,7 @@ class InitialPollHandler(ConversationHandler):
             text="Варианты!\n\n" + "\n".join(self.books),
             reply_markup=poll_reply_markup(self.books)
         )
-        # send this poll to backend
+        
         poll = createPoll(str(pollMessage.message_id),
                           PollType.INITIAL, self.books)
         self.poll_manager.save_poll(poll.id, poll.type, self.books)
